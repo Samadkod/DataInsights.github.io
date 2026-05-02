@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Samad Kodon — Data Analyst | Python, SQL, Power BI | Strasbourg</title>
+<meta name="description" content="Samad Kodon, Data Analyst avec 4 ans d'expérience. Ex-Canal+ International. Major de promo Big Data Montpellier. Python, SQL, Power BI, Dataiku. Disponible CDI — Strasbourg, remote, mobile France.">
+<meta name="keywords" content="Data Analyst, Python, SQL, Power BI, Dataiku, Snowflake, Strasbourg, CDI, Data Science, Machine Learning, Samad Kodon">
+<meta name="author" content="Samad Kodon">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://samadkod.github.io/DataInsights.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samadkod.github.io/DataInsights.github.io/">
+<meta property="og:title" content="Samad Kodon — Data Analyst | Python, SQL, Power BI">
+<meta property="og:description" content="Data Analyst 4 ans d'expérience. Ex-Canal+. Major de promo. Disponible CDI.">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/121679170?s=400">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;1,300;1,700&family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════
+   RESET + VARIABLES
+════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+
+:root{
+  --bg:#080b14;
+  --bg2:#0d1220;
+  --card:#111827;
+  --card2:#162033;
+  --accent:#4f8ef7;
+  --accent2:#22d3ee;
+  --gold:#fbbf24;
+  --green:#34d399;
+  --red:#f87171;
+  --text:#f0f4ff;
+  --text2:#8896b3;
+  --border:rgba(255,255,255,0.07);
+  --glow:rgba(79,142,247,0.15);
+  --serif:'Fraunces',serif;
+  --mono:'DM Mono',monospace;
+  --sans:'Plus Jakarta Sans',sans-serif;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="light"]{
+  --bg:#f5f7ff;
+  --bg2:#eef1fb;
+  --card:#ffffff;
+  --card2:#e8edf8;
+  --accent:#2563eb;
+  --accent2:#0891b2;
+  --gold:#d97706;
+  --green:#059669;
+  --text:#0b1120;
+  --text2:#4b5e7e;
+  --border:rgba(0,0,0,0.07);
+  --glow:rgba(37,99,235,0.08);
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-weight:300;
+  overflow-x:hidden;
+  transition:background .4s,color .4s;
+  cursor:none;
+}
+@media(max-width:768px){body{cursor:auto}}
+
+/* ════════════════════════════════════════
+   CURSEUR
+════════════════════════════════════════ */
+.c-ring{position:fixed;width:28px;height:28px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s,opacity .25s;opacity:.55;mix-blend-mode:normal}
+.c-dot{position:fixed;width:4px;height:4px;background:var(--accent2);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%)}
+.c-ring.h{width:44px;height:44px;border-color:var(--accent2);opacity:.35}
+@media(max-width:768px){.c-ring,.c-dot{display:none}}
+
+/* ════════════════════════════════════════
+   SCROLL PROGRESS
+════════════════════════════════════════ */
+.sp{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:300;width:0%}
+
+/* ════════════════════════════════════════
+   PRELOADER
+════════════════════════════════════════ */
+.pl{position:fixed;inset:0;background:var(--bg);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .7s,visibility .7s}
+.pl.gone{opacity:0;visibility:hidden;pointer-events:none}
+.pl-name{font-family:var(--serif);font-size:42px;font-weight:700;color:var(--text);letter-spacing:-1px}
+.pl-name em{color:var(--accent);font-style:normal}
+.pl-bar{width:200px;height:1px;background:var(--border);position:relative;overflow:hidden}
+.pl-bar::after{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));animation:plbar 1.5s ease forwards}
+@keyframes plbar{to{left:100%}}
+.pl-sub{font-family:var(--mono);font-size:11px;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+
+/* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 56px;transition:all .35s var(--ease)}
+nav.s{padding:12px 56px;background:rgba(8,11,20,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+[data-theme="light"] nav.s{background:rgba(245,247,255,.93)}
+
+.nav-logo{font-family:var(--mono);font-size:13px;color:var(--accent2);letter-spacing:3px;text-transform:uppercase;text-decoration:none}
+
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:11px;color:var(--text2);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav-links a:hover,.nav-links a.act{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.act::after{width:100%}
+
+.nav-r{display:flex;align-items:center;gap:12px}
+
+/* Theme toggle */
+.t-tog{display:flex;align-items:center;gap:6px;cursor:none;padding:4px}
+.t-track{width:36px;height:20px;background:var(--card2);border:1px solid var(--border);border-radius:10px;position:relative;transition:background .3s}
+.t-track::after{content:'';position:absolute;top:3px;left:3px;width:12px;height:12px;border-radius:50%;background:var(--accent);transition:transform .3s,background .3s}
+[data-theme="light"] .t-track::after{transform:translateX(16px);background:var(--gold)}
+.t-icon{font-size:14px;line-height:1}
+
+/* Lang toggle */
+.l-tog{display:flex;border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.l-btn{font-family:var(--mono);font-size:10px;padding:5px 10px;letter-spacing:1.5px;background:transparent;color:var(--text2);border:none;cursor:none;transition:all .25s}
+.l-btn.act{background:var(--accent);color:#fff}
+
+.nav-cta{font-family:var(--mono);font-size:10px;padding:8px 18px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;letter-spacing:2px;text-transform:uppercase;border-radius:3px;transition:all .3s}
+.nav-cta:hover{background:var(--accent);color:#fff}
+
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+#home{min-height:100vh;display:flex;align-items:center;padding:140px 56px 100px;position:relative;overflow:hidden}
+
+.h-bg{position:absolute;inset:0}
+.h-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(79,142,247,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(79,142,247,.04) 1px,transparent 1px);background-size:60px 60px}
+[data-theme="light"] .h-grid{background-image:linear-gradient(rgba(37,99,235,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.05) 1px,transparent 1px)}
+
+.orb{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none}
+.orb1{width:550px;height:550px;background:radial-gradient(circle,rgba(79,142,247,.13) 0%,transparent 65%);top:-200px;right:-80px;animation:of1 16s ease-in-out infinite alternate}
+.orb2{width:380px;height:380px;background:radial-gradient(circle,rgba(34,211,238,.09) 0%,transparent 65%);bottom:-80px;left:40px;animation:of1 20s ease-in-out infinite alternate-reverse}
+.orb3{width:260px;height:260px;background:radial-gradient(circle,rgba(251,191,36,.06) 0%,transparent 65%);top:40%;left:35%;animation:of1 24s ease-in-out infinite alternate}
+@keyframes of1{from{transform:translate(0,0)}to{transform:translate(20px,16px)}}
+
+.h-content{position:relative;z-index:1;max-width:840px}
+
+.h-tag{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--accent2);letter-spacing:3px;text-transform:uppercase;margin-bottom:36px;padding:10px 20px;border:1px solid rgba(34,211,238,.2);border-radius:3px;background:rgba(34,211,238,.04);opacity:0;animation:fu .8s .4s forwards}
+.h-dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:bk 2s infinite}
+@keyframes bk{0%,100%{opacity:1}50%{opacity:.15}}
+
+/* Hero title — redesigned: smaller, elegant, not screaming */
+.h-pretitle{font-family:var(--mono);font-size:12px;color:var(--text2);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;opacity:0;animation:fu .8s .6s forwards}
+
+.h-title{font-family:var(--serif);font-size:clamp(44px,6.5vw,84px);font-weight:700;line-height:1;letter-spacing:-2px;margin-bottom:12px;color:var(--text);opacity:0;animation:fu .9s .7s forwards}
+.h-title .line2{font-weight:300;font-style:italic;color:var(--accent)}
+
+.h-role{font-family:var(--mono);font-size:clamp(14px,1.8vw,18px);color:var(--text2);margin-bottom:28px;letter-spacing:1px;opacity:0;animation:fu .9s .9s forwards}
+
+.h-desc{font-size:17px;color:var(--text2);max-width:520px;line-height:1.9;margin-bottom:40px;opacity:0;animation:fu .9s 1.1s forwards}
+.h-desc strong{color:var(--text);font-weight:500}
+
+.h-badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:48px;opacity:0;animation:fu .9s 1.3s forwards}
+.badge{font-family:var(--mono);font-size:10px;padding:6px 14px;border-radius:3px;letter-spacing:1.5px;text-transform:uppercase;transition:transform .25s}
+.badge:hover{transform:translateY(-2px)}
+.b-blue{background:rgba(79,142,247,.08);border:1px solid rgba(79,142,247,.2);color:var(--accent)}
+.b-cyan{background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);color:var(--accent2)}
+.b-gold{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);color:var(--gold)}
+.b-green{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);color:var(--green)}
+
+.h-ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fu .9s 1.5s forwards}
+
+/* ════════════════════════════════════════
+   BOUTONS
+════════════════════════════════════════ */
+.btn-p{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;background:var(--accent);color:#fff;text-decoration:none;font-size:14px;font-weight:500;border-radius:3px;transition:all .3s;position:relative;overflow:hidden}
+.btn-p span{position:relative;z-index:1}
+.btn-p::before{content:'';position:absolute;inset:0;background:var(--accent2);transform:translateX(-100%);transition:transform .3s var(--ease)}
+.btn-p:hover::before{transform:translateX(0)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(79,142,247,.3)}
+
+.btn-o{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;border:1px solid var(--border);color:var(--text2);text-decoration:none;font-size:14px;border-radius:3px;transition:all .3s}
+.btn-o:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+/* ════════════════════════════════════════
+   STATS
+════════════════════════════════════════ */
+.stats{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr)}
+.st{padding:40px 20px;text-align:center;border-right:1px solid var(--border);transition:background .3s}
+.st:last-child{border-right:none}
+.st:hover{background:var(--glow)}
+.st-n{font-family:var(--serif);font-size:52px;font-weight:700;line-height:1;margin-bottom:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.st-l{font-family:var(--mono);font-size:10px;color:var(--text2);letter-spacing:2.5px;text-transform:uppercase}
+
+/* ════════════════════════════════════════
+   SECTIONS
+════════════════════════════════════════ */
+section{padding:110px 56px;position:relative}
+.s-tag{font-family:var(--mono);font-size:10px;color:var(--accent2);letter-spacing:4px;text-transform:uppercase;margin-bottom:16px}
+.s-title{font-family:var(--serif);font-size:clamp(38px,5vw,62px);font-weight:700;line-height:1.05;margin-bottom:16px;letter-spacing:-2px;color:var(--text)}
+.s-sub{color:var(--text2);font-size:17px;max-width:520px;line-height:1.8;margin-bottom:64px}
+
+#about{background:var(--bg)}
+#skills{background:var(--bg2)}
+#experience{background:var(--bg)}
+#projects{background:var(--bg2)}
+#apps{background:var(--bg)}
+#recommandations{background:var(--bg2)}
+#contact{background:var(--bg);text-align:center}
+
+/* ════════════════════════════════════════
+   ABOUT
+════════════════════════════════════════ */
+.about-g{display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:start}
+.about-text p{color:var(--text2);line-height:2;font-size:16.5px;margin-bottom:24px}
+.about-text p strong{color:var(--text);font-weight:500}
+.about-cards{display:flex;flex-direction:column;gap:14px}
+.a-card{background:var(--card);border:1px solid var(--border);border-left:2px solid var(--accent);padding:22px 26px;border-radius:3px;transition:all .3s}
+.a-card:hover{border-left-color:var(--accent2);transform:translateX(6px)}
+.a-card h4{font-size:15px;font-weight:600;margin-bottom:7px;color:var(--text)}
+.a-card p{font-size:14px;color:var(--text2);line-height:1.7}
+
+/* ════════════════════════════════════════
+   SKILLS
+════════════════════════════════════════ */
+.sk-g{display:grid;grid-template-columns:repeat(2,1fr);gap:52px 72px}
+.sk-grp h3{font-family:var(--mono);font-size:10px;color:var(--accent2);letter-spacing:3.5px;text-transform:uppercase;margin-bottom:28px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.sk-row{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.sk-name{font-family:var(--mono);font-size:13px;color:var(--text);width:120px;flex-shrink:0}
+.sk-bar{flex:1;height:3px;background:var(--border);border-radius:3px;overflow:hidden}
+.sk-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width 1.5s var(--ease)}
+.sk-pct{font-family:var(--mono);font-size:11px;color:var(--text2);width:34px;text-align:right}
+
+/* ════════════════════════════════════════
+   EXPERIENCE
+════════════════════════════════════════ */
+.exp-tl{position:relative;padding-left:52px;max-width:860px}
+.exp-tl::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,var(--accent),var(--accent2),transparent);opacity:.25}
+.exp-item{position:relative;margin-bottom:76px;opacity:0;transform:translateX(-20px);transition:opacity .7s,transform .7s}
+.exp-item.vis{opacity:1;transform:translateX(0)}
+.exp-dot{position:absolute;left:-56px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 0 2px var(--accent),0 0 12px rgba(79,142,247,.5)}
+.exp-date{font-family:var(--mono);font-size:10px;color:var(--accent2);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px}
+.exp-co{font-family:var(--serif);font-size:32px;font-weight:700;margin-bottom:4px;color:var(--text);letter-spacing:-1px}
+.exp-role{font-family:var(--mono);font-size:13px;color:var(--text2);margin-bottom:16px;letter-spacing:.5px}
+.exp-badge{display:inline-block;font-family:var(--mono);font-size:9px;padding:4px 12px;border-radius:3px;margin-bottom:22px;letter-spacing:2px;text-transform:uppercase}
+.eb-cdi{background:rgba(52,211,153,.08);color:var(--green);border:1px solid rgba(52,211,153,.2)}
+.eb-stage{background:rgba(251,191,36,.08);color:var(--gold);border:1px solid rgba(251,191,36,.2)}
+.eb-int{background:rgba(79,142,247,.08);color:var(--accent);border:1px solid rgba(79,142,247,.2)}
+.exp-ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.exp-ul li{display:flex;gap:14px;font-size:15.5px;color:var(--text2);line-height:1.7}
+.exp-ul li::before{content:'→';color:var(--accent);flex-shrink:0;opacity:.7}
+.exp-tools{display:flex;flex-wrap:wrap;gap:8px}
+.t-tag{font-family:var(--mono);font-size:10px;padding:4px 12px;background:var(--card);border:1px solid var(--border);border-radius:3px;color:var(--text2);transition:all .25s}
+.t-tag:hover{background:rgba(79,142,247,.08);border-color:var(--accent);color:var(--accent)}
+
+/* ════════════════════════════════════════
+   PROJETS
+════════════════════════════════════════ */
+.proj-g{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.proj-c{background:var(--card);border:1px solid var(--border);border-radius:6px;display:flex;flex-direction:column;opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s,border-color .3s,box-shadow .3s}
+.proj-c.vis{opacity:1;transform:translateY(0)}
+.proj-c:hover{border-color:rgba(79,142,247,.3);box-shadow:0 20px 50px rgba(0,0,0,.2);transform:translateY(-5px)!important}
+.proj-inner{padding:28px;flex:1}
+.proj-num{font-family:var(--mono);font-size:11px;color:var(--border);letter-spacing:2px;margin-bottom:14px;display:block}
+.proj-cat{font-family:var(--mono);font-size:9px;color:var(--accent2);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.proj-title{font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:12px;line-height:1.2;color:var(--text);transition:color .3s;letter-spacing:-.5px}
+.proj-c:hover .proj-title{color:var(--accent)}
+.proj-desc{font-size:14px;color:var(--text2);line-height:1.75}
+.proj-foot{padding:16px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.proj-stack{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-family:var(--mono);font-size:9px;padding:3px 9px;background:rgba(79,142,247,.06);border:1px solid rgba(79,142,247,.12);border-radius:3px;color:var(--accent)}
+.proj-link{font-family:var(--mono);font-size:10px;color:var(--text2);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .25s;letter-spacing:1px;white-space:nowrap}
+.proj-link:hover{color:var(--accent2);gap:10px}
+
+/* ════════════════════════════════════════
+   APPS
+════════════════════════════════════════ */
+.apps-g{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.app-c{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:32px;display:flex;gap:24px;align-items:flex-start;transition:all .3s}
+.app-c:hover{border-color:rgba(34,211,238,.3);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.15)}
+.app-ico{font-size:26px;width:52px;height:52px;background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.12);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s}
+.app-c:hover .app-ico{background:rgba(34,211,238,.12);border-color:rgba(34,211,238,.25)}
+.app-body h3{font-size:16px;font-weight:600;margin-bottom:9px;color:var(--text)}
+.app-body p{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:16px}
+.app-link{font-family:var(--mono);font-size:10px;color:var(--accent2);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;transition:gap .25s}
+.app-link:hover{gap:14px}
+
+/* ════════════════════════════════════════
+   RECOMMANDATIONS
+════════════════════════════════════════ */
+.reco-g{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.reco-c{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:44px;position:relative;overflow:hidden;transition:all .3s}
+.reco-c::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.reco-c:hover::before{transform:scaleX(1)}
+.reco-c:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.2)}
+.reco-q{font-family:var(--serif);font-size:80px;color:var(--accent);opacity:.1;line-height:.6;margin-bottom:24px;display:block}
+.reco-txt{font-size:16px;color:var(--text2);line-height:1.9;margin-bottom:32px;font-style:italic}
+.reco-auth{display:flex;align-items:center;gap:16px}
+.reco-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0;color:#fff}
+.reco-info h4{font-size:15px;font-weight:600;margin-bottom:4px;color:var(--text)}
+.reco-info p{font-size:12px;color:var(--text2)}
+
+/* ════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════ */
+.cnt-wrap{max-width:620px;margin:0 auto}
+.cnt-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:64px;position:relative;overflow:hidden}
+.cnt-card::before{content:'';position:absolute;top:-1px;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent)}
+.cnt-card p{color:var(--text2);font-size:17px;line-height:1.85;margin-bottom:44px}
+.cnt-card p strong{color:var(--text);font-weight:500}
+.cnt-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.cnt-loc{font-family:var(--mono);font-size:11px;color:var(--text2);letter-spacing:2px;text-transform:uppercase}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer{padding:28px 56px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
+footer p{font-family:var(--mono);font-size:10px;color:var(--text2);letter-spacing:1.5px;text-transform:uppercase}
+
+/* ════════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════════ */
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media(max-width:1100px){
+  nav,nav.s{padding-left:32px;padding-right:32px}
+  #home{padding:120px 32px 80px}
+  section{padding:90px 32px}
+  footer{padding:24px 32px}
+}
+@media(max-width:900px){
+  .about-g{grid-template-columns:1fr;gap:48px}
+  .sk-g{grid-template-columns:1fr;gap:40px}
+  .proj-g{grid-template-columns:1fr}
+  .apps-g{grid-template-columns:1fr}
+  .reco-g{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  nav.s{padding:10px 20px}
+  .nav-links{display:none}
+  #home{padding:100px 20px 64px}
+  section{padding:72px 20px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .st{border-right:none;border-bottom:1px solid var(--border)}
+  .cnt-card{padding:40px 24px}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="pl" id="pl">
+  <div class="pl-name">Samad <em>KODON</em></div>
+  <div class="pl-bar"></div>
+  <div class="pl-sub">// Data Analyst</div>
+</div>
+
+<!-- CURSEUR -->
+<div class="c-ring" id="cr"></div>
+<div class="c-dot" id="cd"></div>
+
+<!-- SCROLL PROGRESS -->
+<div class="sp" id="sp"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#home" class="nav-logo">SK // Data</a>
+  <ul class="nav-links">
+    <li><a href="#about"      data-i18n="n_about">À propos</a></li>
+    <li><a href="#skills"     data-i18n="n_skills">Compétences</a></li>
+    <li><a href="#experience" data-i18n="n_exp">Expérience</a></li>
+    <li><a href="#projects"   data-i18n="n_proj">Projets</a></li>
+    <li><a href="#apps"       data-i18n="n_apps">Apps</a></li>
+  </ul>
+  <div class="nav-r">
+    <div class="l-tog">
+      <button class="l-btn act" data-lang="fr">FR</button>
+      <button class="l-btn" data-lang="en">EN</button>
+    </div>
+    <div class="t-tog" id="ttog" title="Thème">
+      <span class="t-icon">🌙</span>
+      <div class="t-track"></div>
+      <span class="t-icon">☀️</span>
+    </div>
+    <a href="#contact" class="nav-cta" data-i18n="n_cta">Me contacter</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="h-bg">
+    <div class="h-grid"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="h-content">
+    <div class="h-tag">
+      <span class="h-dot"></span>
+      <span data-i18n="h_tag">Disponible CDI · Remote OK · Mobile France</span>
+    </div>
+    <p class="h-pretitle" data-i18n="h_pre">Data Analyst & Data Scientist</p>
+    <h1 class="h-title">
+      Samad Kodon —
+      <span class="line2" data-i18n="h_line2">la donnée au service<br>des décisions</span>
+    </h1>
+    <p class="h-role" data-i18n="h_role">Python · SQL · Power BI · Dataiku · Snowflake</p>
+    <p class="h-desc" data-i18n="h_desc">
+      Je transforme des données brutes en <strong>décisions stratégiques</strong>. Spécialisé en analyse de performance, modélisation prédictive et automatisation — expériences concrètes chez <strong>Canal+</strong> et dans la tech africaine.
+    </p>
+    <div class="h-badges">
+      <span class="badge b-gold"  data-i18n="b_major">⭐ Major de promo — Montpellier</span>
+      <span class="badge b-blue"  data-i18n="b_canal">Ex-Canal+ International</span>
+      <span class="badge b-cyan"  data-i18n="b_dku">Dataiku Advanced Designer</span>
+      <span class="badge b-green" data-i18n="b_exp">4 ans d'expérience</span>
+    </div>
+    <div class="h-ctas">
+      <a href="https://github.com/Samadkod" class="btn-p" target="_blank"><span data-i18n="btn_proj">📂 Voir mes projets</span></a>
+      <a href="#contact" class="btn-o" data-i18n="btn_cnt">📬 Me contacter</a>
+      <a href="CV_2025-07-30_Samadou_KODON.pdf" class="btn-o" target="_blank" data-i18n="btn_cv">📄 Mon CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="st reveal"><div class="st-n" data-target="4" data-suffix="+">0+</div><div class="st-l" data-i18n="s_exp">Ans d'expérience</div></div>
+  <div class="st reveal d1"><div class="st-n" data-target="8">0</div><div class="st-l" data-i18n="s_proj">Projets data</div></div>
+  <div class="st reveal d2"><div class="st-n" data-target="4">0</div><div class="st-l" data-i18n="s_apps">Apps déployées</div></div>
+  <div class="st reveal d3"><div class="st-n" data-target="7">0</div><div class="st-l" data-i18n="s_certs">Certifications</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="s-tag" data-i18n="a_tag">// 01 — À propos</div>
+  <h2 class="s-title" data-i18n="a_title">Un profil rare :<br>data + économie</h2>
+  <div class="about-g reveal">
+    <div class="about-text">
+      <p>Data Analyst avec près de <strong>4 ans d'expérience</strong> en analyse, modélisation et automatisation. Ma double formation en <strong>Big Data & Data Science</strong> (Major de promotion, Montpellier) et en <strong>Économie Quantitative</strong> (Besançon) me permet de faire le lien entre la technique et les enjeux business.</p>
+      <p>Chez <strong>Canal+ International</strong>, j'ai analysé la performance des chaînes, modélisé le churn et automatisé les reportings avec Python et Dataiku. Chez <strong>Gozem</strong> — Super App de transport en Afrique — j'ai piloté la data pendant plus de 2 ans en CDI.</p>
+      <p>Aujourd'hui chez <strong>Groupe OCEA</strong>, j'interviens sur la migration et le contrôle qualité des données d'un système d'information complet.</p>
+      <p>📍 Basé à <strong>Strasbourg</strong> — Mobile toute France — Remote OK</p>
+    </div>
+    <div class="about-cards">
+      <div class="a-card"><h4>🎯 Ce que j'apporte</h4><p>Des analyses actionnables, des dashboards clairs, une vraie rigueur sur la qualité de la donnée.</p></div>
+      <div class="a-card"><h4>🤝 Ma façon de travailler</h4><p>Je cadre rapidement un besoin métier et livre des résultats concrets en quelques jours.</p></div>
+      <div class="a-card"><h4>🚀 Mon objectif</h4><p>Rejoindre une équipe data ambitieuse en CDI pour construire des outils à impact réel.</p></div>
+      <div class="a-card"><h4>💡 Ma valeur ajoutée</h4><p>Double culture data science + économie : je comprends à la fois les données ET les enjeux stratégiques.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-tag" data-i18n="sk_tag">// 02 — Compétences</div>
+  <h2 class="s-title" data-i18n="sk_title">Stack technique</h2>
+  <p class="s-sub" data-i18n="sk_sub">Des outils maîtrisés dans des contextes professionnels réels — pas seulement académiques.</p>
+  <div class="sk-g reveal">
+    <div class="sk-grp">
+      <h3>// Langages & Analyse</h3>
+      <div class="sk-row"><span class="sk-name">Python</span><div class="sk-bar"><div class="sk-fill" data-w="92%"></div></div><span class="sk-pct">92%</span></div>
+      <div class="sk-row"><span class="sk-name">SQL</span><div class="sk-bar"><div class="sk-fill" data-w="88%"></div></div><span class="sk-pct">88%</span></div>
+      <div class="sk-row"><span class="sk-name">R</span><div class="sk-bar"><div class="sk-fill" data-w="75%"></div></div><span class="sk-pct">75%</span></div>
+      <div class="sk-row"><span class="sk-name">SAS</span><div class="sk-bar"><div class="sk-fill" data-w="70%"></div></div><span class="sk-pct">70%</span></div>
+    </div>
+    <div class="sk-grp">
+      <h3>// Visualisation & BI</h3>
+      <div class="sk-row"><span class="sk-name">Power BI</span><div class="sk-bar"><div class="sk-fill" data-w="88%"></div></div><span class="sk-pct">88%</span></div>
+      <div class="sk-row"><span class="sk-name">Dataiku</span><div class="sk-bar"><div class="sk-fill" data-w="82%"></div></div><span class="sk-pct">82%</span></div>
+      <div class="sk-row"><span class="sk-name">Streamlit</span><div class="sk-bar"><div class="sk-fill" data-w="80%"></div></div><span class="sk-pct">80%</span></div>
+      <div class="sk-row"><span class="sk-name">Excel</span><div class="sk-bar"><div class="sk-fill" data-w="95%"></div></div><span class="sk-pct">95%</span></div>
+    </div>
+    <div class="sk-grp">
+      <h3>// Data Engineering</h3>
+      <div class="sk-row"><span class="sk-name">Snowflake</span><div class="sk-bar"><div class="sk-fill" data-w="72%"></div></div><span class="sk-pct">72%</span></div>
+      <div class="sk-row"><span class="sk-name">ETL / Pipelines</span><div class="sk-bar"><div class="sk-fill" data-w="70%"></div></div><span class="sk-pct">70%</span></div>
+      <div class="sk-row"><span class="sk-name">Git</span><div class="sk-bar"><div class="sk-fill" data-w="78%"></div></div><span class="sk-pct">78%</span></div>
+    </div>
+    <div class="sk-grp">
+      <h3>// Machine Learning</h3>
+      <div class="sk-row"><span class="sk-name">Scikit-learn</span><div class="sk-bar"><div class="sk-fill" data-w="82%"></div></div><span class="sk-pct">82%</span></div>
+      <div class="sk-row"><span class="sk-name">NLP</span><div class="sk-bar"><div class="sk-fill" data-w="70%"></div></div><span class="sk-pct">70%</span></div>
+      <div class="sk-row"><span class="sk-name">TensorFlow</span><div class="sk-bar"><div class="sk-fill" data-w="60%"></div></div><span class="sk-pct">60%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="s-tag" data-i18n="e_tag">// 03 — Expérience</div>
+  <h2 class="s-title" data-i18n="e_title">Parcours</h2>
+  <p class="s-sub" data-i18n="e_sub">Des expériences concrètes dans des environnements exigeants, en France et en Afrique.</p>
+  <div class="exp-tl">
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-date">Sept. 2025 — Aujourd'hui · 9 mois</div>
+      <div class="exp-co">Groupe OCEA</div>
+      <div class="exp-role">Data Analyst — Data Quality & Migration SI</div>
+      <span class="exp-badge eb-int">Intérim</span>
+      <ul class="exp-ul">
+        <li>Migration du SI Harmonie vers Imago — contrôle qualité, nettoyage et correction des anomalies</li>
+        <li>Analyse et correction de données sur plusieurs sites selon des rapports de contrôle multi-critères</li>
+        <li>Saisie et validation des index de dépose dans l'outil self-service de migration</li>
+        <li>Accompagnement de l'équipe data sur des projets transverses de maintenance</li>
+      </ul>
+      <div class="exp-tools"><span class="t-tag">Python</span><span class="t-tag">SQL</span><span class="t-tag">Excel</span><span class="t-tag">Harmonie</span><span class="t-tag">Imago</span></div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-date">Fév. 2024 — Sept. 2024 · 8 mois</div>
+      <div class="exp-co">Canal+ International</div>
+      <div class="exp-role">Data Analyst — Marketing & Performance</div>
+      <span class="exp-badge eb-stage">Stage</span>
+      <ul class="exp-ul">
+        <li>Analyse de la performance des chaînes et contenus (TV, Replay) — DROM & Afrique</li>
+        <li>Modélisation du churn par machine learning — détection des abonnés à risque</li>
+        <li>Scoring & segmentation des abonnés pour campagnes marketing ciblées</li>
+        <li>Automatisation des flux de reporting avec Python & Dataiku — temps divisé par 2</li>
+        <li>Création de dashboards Power BI pour le pilotage des KPIs abonnements</li>
+      </ul>
+      <div class="exp-tools"><span class="t-tag">Python</span><span class="t-tag">SQL (Snowflake)</span><span class="t-tag">Power BI</span><span class="t-tag">Dataiku</span><span class="t-tag">Excel</span></div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-date">Juin 2019 — Août 2021 · 2 ans 3 mois</div>
+      <div class="exp-co">Gozem — Africa's Super App</div>
+      <div class="exp-role">Data Analyst — Transport & E-commerce</div>
+      <span class="exp-badge eb-cdi">CDI</span>
+      <ul class="exp-ul">
+        <li>Double rôle Data Analyst & Qualité — analyse des KPIs chauffeurs (acceptation, gains)</li>
+        <li>Accompagnement terrain des chauffeurs sous-performants basé sur la donnée</li>
+        <li>Segmentation CRM pour cibler les utilisateurs avec des offres adaptées</li>
+        <li>Dashboards de pilotage pour la direction : rétention, revenus, objectifs</li>
+        <li>Automatisation des tableaux de bord Google Sheets connecté à GeckoBoard</li>
+      </ul>
+      <div class="exp-tools"><span class="t-tag">Excel</span><span class="t-tag">Google Sheets</span><span class="t-tag">Pipedrive</span><span class="t-tag">GeckoBoard</span><span class="t-tag">SQL</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projects">
+  <div class="s-tag" data-i18n="p_tag">// 04 — Projets</div>
+  <h2 class="s-title" data-i18n="p_title">Projets data</h2>
+  <p class="s-sub" data-i18n="p_sub">Des projets couvrant la data science, le machine learning et l'analyse sectorielle.</p>
+  <div class="proj-g">
+    <div class="proj-c"><div class="proj-inner"><span class="proj-num">01</span><div class="proj-cat">Machine Learning · Finance</div><h3 class="proj-title">Détection de Fraudes</h3><p class="proj-desc">Analyse de risques et détection de fraudes dans le commerce numérique via Data Science et IA.</p></div><div class="proj-foot"><div class="proj-stack"><span class="pill">Python</span><span class="pill">ML</span><span class="pill">Sklearn</span></div><a href="https://github.com/Samadkod" class="proj-link" target="_blank" data-i18n="voir">Voir →</a></div></div>
+    <div class="proj-c"><div class="proj-inner"><span class="proj-num">02</span><div class="proj-cat">Deep Learning · Finance</div><h3 class="proj-title">Réseau de Neurones — Marchés</h3><p class="proj-desc">Réseaux neuronaux pour prévoir l'évolution des marchés financiers via API Yahoo Finance.</p></div><div class="proj-foot"><div class="proj-stack"><span class="pill">Python</span><span class="pill">PyTorch</span><span class="pill">API</span></div><a href="https://github.com/Samadkod" class="proj-link" target="_blank" data-i18n="voir">Voir →</a></div></div>
+    <div class="proj-c"><div class="proj-inner"><span class="proj-num">03</span><div class="proj-cat">NLP · Justice</div><h3 class="proj-title">Text Mining — Justice</h3><p class="proj-desc">Analyse de textes juridiques et prédiction de décisions via TF-IDF et Transformers.</p></div><div class="proj-foot"><div class="proj-stack"><span class="pill">Python</span><span class="pill">NLP</span><span class="pill">Transformers</span></div><a href="https://github.com/Samadkod" class="proj-link" target="_blank" data-i18n="voir">Voir →</a></div></div>
+    <div class="proj-c"><div class="proj-inner"><span class="proj-num">04</span><div class="proj-cat">Segmentation · Media</div><h3 class="proj-title">Segmentation Abonnés Ligue 1</h3><p class="proj-desc">Optimisation de l'engagement client via segmentation avancée des abonnés Canal+.</p></div><div class="proj-foot"><div class="proj-stack"><span class="pill">Python</span><span class="pill">SQL</span><span class="pill">Clustering</span></div><a href="https://github.com/Samadkod" class="proj-link" target="_blank" data-i18n="voir">Voir →</a></div></div>
+    <div class="proj-c"><div class="proj-inner"><span class="proj-num">05</span><div class="proj-cat">Économétrie · Assurance</div><h3 class="proj-title">Analyse Profils d'Assurés</h3><p class="proj-desc">Modélisation statistique multivariée pour l'optimisation des stratégies de tarification.</p></div><div class="proj-foot"><div class="proj-stack"><span class="pill">R</span><span class="pill">SAS</span><span class="pill">Stats</span></div><a href="https://github.com/Samadkod/3.Projet-data_Assurance-auto" class="proj-link" target="_blank" data-i18n="voir">Voir →</a></div></div>
+    <div class="proj-c"><div class="proj-inner"><span class="proj-num">06</span><div class="proj-cat">Data Viz · Gaming</div><h3 class="proj-title">Power BI — Marché Jeux Vidéo</h3><p class="proj-desc">Analyse du marché des jeux vidéos avec formules DAX et dashboard interactif complet.</p></div><div class="proj-foot"><div class="proj-stack"><span class="pill">Power BI</span><span class="pill">DAX</span><span class="pill">SQL</span></div><a href="https://github.com/Samadkod" class="proj-link" target="_blank" data-i18n="voir">Voir →</a></div></div>
+  </div>
+</section>
+
+<!-- APPS -->
+<section id="apps">
+  <div class="s-tag" data-i18n="ap_tag">// 05 — Applications live</div>
+  <h2 class="s-title" data-i18n="ap_title">Apps déployées</h2>
+  <p class="s-sub" data-i18n="ap_sub">Des applications interactives conçues et déployées pour des besoins métiers concrets.</p>
+  <div class="apps-g reveal">
+    <div class="app-c"><div class="app-ico">🏢</div><div class="app-body"><h3>Pilotage Production — Organisme Public</h3><p>Tableau de bord : délais, types de dossiers, performance par agence.</p><a href="https://pilotage-appuction-organisme-public-gnjpui2nu66lmc4ked96zl.streamlit.app/" class="app-link" target="_blank" data-i18n="ouvrir">Ouvrir l'app →</a></div></div>
+    <div class="app-c"><div class="app-ico">👥</div><div class="app-body"><h3>Pilotage RH — Atelier de la Donnée</h3><p>Suivi interactif des effectifs, masse salariale, absences et turnover.</p><a href="https://pilotage-rh-app-fqob5xhyhj3b5wfwduz5vr.streamlit.app/" class="app-link" target="_blank" data-i18n="ouvrir">Ouvrir l'app →</a></div></div>
+    <div class="app-c"><div class="app-ico">🛒</div><div class="app-body"><h3>Optimisation Assortiment — Retail</h3><p>Simulation de performance produit : CA, marge, élasticité promo.</p><a href="https://app-optimisation-aapprtiment-fmcg-aaa2kax5ty2sjwjrjcsgsj.streamlit.app/" class="app-link" target="_blank" data-i18n="ouvrir">Ouvrir l'app →</a></div></div>
+    <div class="app-c"><div class="app-ico">💬</div><div class="app-body"><h3>Social Listening — Marques de Luxe</h3><p>Analyse des sentiments à partir de mentions Twitter. Focus marques luxe.</p><a href="https://social-listening-luxe-bjhqf4fartf8c3wqswcv7x.streamlit.app/" class="app-link" target="_blank" data-i18n="ouvrir">Ouvrir l'app →</a></div></div>
+  </div>
+</section>
+
+<!-- RECOMMANDATIONS -->
+<section id="recommandations">
+  <div class="s-tag" data-i18n="r_tag">// 06 — Recommandations</div>
+  <h2 class="s-title" data-i18n="r_title">Ce qu'ils disent</h2>
+  <p class="s-sub" data-i18n="r_sub">Des personnes qui ont travaillé directement avec moi.</p>
+  <div class="reco-g reveal">
+    <div class="reco-c"><span class="reco-q">"</span><p class="reco-txt">Samadou a fini major de promotion avec mention très bien. Il maîtrise parfaitement les outils d'analyse des données, mais aussi ceux de data science — notamment les réseaux de neurones et les techniques de machine learning avancées.</p><div class="reco-auth"><div class="reco-av">SM</div><div class="reco-info"><h4>Stéphane Mussard</h4><p>Professeur des Universités — Montpellier</p></div></div></div>
+    <div class="reco-c"><span class="reco-q">"</span><p class="reco-txt">Samad est un Data Analyst doté d'une grande motivation et d'un esprit curieux. Sa soif de comprendre les subtilités de chaque projet et son sérieux font de lui un collègue précieux.</p><div class="reco-auth"><div class="reco-av">CQ</div><div class="reco-info"><h4>Coline Quilgars</h4><p>Analytics Engineer — Soluxan (mentor)</p></div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="s-tag" data-i18n="c_tag">// 07 — Contact</div>
+  <h2 class="s-title" data-i18n="c_title">Travaillons ensemble</h2>
+  <div class="cnt-wrap">
+    <div class="cnt-card reveal">
+      <p data-i18n="c_desc">Disponible immédiatement pour un <strong>CDI Data Analyst</strong> — priorité absolue. Ouvert aussi aux CDD et missions freelance. Mobile toute France, remote OK.</p>
+      <div class="cnt-btns">
+        <a href="mailto:samad.kodon@gmail.com" class="btn-p"><span>📧 samad.kodon@gmail.com</span></a>
+        <a href="https://linkedin.com/in/skodon" class="btn-o" target="_blank">💼 LinkedIn</a>
+        <a href="https://github.com/Samadkod" class="btn-o" target="_blank">⌨️ GitHub</a>
+      </div>
+      <p class="cnt-loc" data-i18n="c_loc">📍 Strasbourg · Mobile toute France · Remote</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p data-i18n="f_l">© 2025 Samad KODON — Data Analyst</p>
+  <p data-i18n="f_r">Strasbourg · Mobile France · Remote OK</p>
+</footer>
+
+<script>
+/* ════════════════════════════════════════
+   TRADUCTIONS FR / EN
+════════════════════════════════════════ */
+const T = {
+  fr:{
+    n_about:'À propos',n_skills:'Compétences',n_exp:'Expérience',n_proj:'Projets',n_apps:'Apps',n_cta:'Me contacter',
+    h_tag:'Disponible CDI · Remote OK · Mobile France',
+    h_pre:'Data Analyst & Data Scientist',
+    h_line2:'la donnée au service<br>des décisions',
+    h_role:'Python · SQL · Power BI · Dataiku · Snowflake',
+    h_desc:'Je transforme des données brutes en <strong>décisions stratégiques</strong>. Spécialisé en analyse de performance, modélisation prédictive et automatisation — expériences concrètes chez <strong>Canal+</strong> et dans la tech africaine.',
+    b_major:'⭐ Major de promo — Montpellier',b_canal:'Ex-Canal+ International',b_dku:'Dataiku Advanced Designer',b_exp:'4 ans d\'expérience',
+    btn_proj:'📂 Voir mes projets',btn_cnt:'📬 Me contacter',btn_cv:'📄 Mon CV',
+    s_exp:'Ans d\'expérience',s_proj:'Projets data',s_apps:'Apps déployées',s_certs:'Certifications',
+    a_tag:'// 01 — À propos',a_title:'Un profil rare :<br>data + économie',
+    sk_tag:'// 02 — Compétences',sk_title:'Stack technique',sk_sub:'Des outils maîtrisés dans des contextes professionnels réels — pas seulement académiques.',
+    e_tag:'// 03 — Expérience',e_title:'Parcours',e_sub:'Des expériences concrètes dans des environnements exigeants, en France et en Afrique.',
+    p_tag:'// 04 — Projets',p_title:'Projets data',p_sub:'Des projets couvrant la data science, le machine learning et l\'analyse sectorielle.',
+    ap_tag:'// 05 — Applications live',ap_title:'Apps déployées',ap_sub:'Des applications interactives conçues et déployées pour des besoins métiers concrets.',
+    r_tag:'// 06 — Recommandations',r_title:'Ce qu\'ils disent',r_sub:'Des personnes qui ont travaillé directement avec moi.',
+    c_tag:'// 07 — Contact',c_title:'Travaillons ensemble',c_desc:'Disponible immédiatement pour un <strong>CDI Data Analyst</strong> — priorité absolue. Ouvert aussi aux CDD et missions freelance. Mobile toute France, remote OK.',c_loc:'📍 Strasbourg · Mobile toute France · Remote',
+    f_l:'© 2025 Samad KODON — Data Analyst',f_r:'Strasbourg · Mobile France · Remote OK',
+    voir:'Voir →',ouvrir:'Ouvrir l\'app →'
+  },
+  en:{
+    n_about:'About',n_skills:'Skills',n_exp:'Experience',n_proj:'Projects',n_apps:'Apps',n_cta:'Contact me',
+    h_tag:'Available · Remote OK · France-wide mobility',
+    h_pre:'Data Analyst & Data Scientist',
+    h_line2:'turning data into<br>strategic decisions',
+    h_role:'Python · SQL · Power BI · Dataiku · Snowflake',
+    h_desc:'I turn raw data into <strong>strategic decisions</strong>. Specialized in performance analysis, predictive modelling and automation — hands-on experience at <strong>Canal+</strong> and in African tech.',
+    b_major:'⭐ Top of class — Montpellier',b_canal:'Ex-Canal+ International',b_dku:'Dataiku Advanced Designer',b_exp:'4 years of experience',
+    btn_proj:'📂 View my projects',btn_cnt:'📬 Contact me',btn_cv:'📄 My CV',
+    s_exp:'Years of experience',s_proj:'Data projects',s_apps:'Deployed apps',s_certs:'Certifications',
+    a_tag:'// 01 — About',a_title:'A rare profile:<br>data + economics',
+    sk_tag:'// 02 — Skills',sk_title:'Tech stack',sk_sub:'Tools mastered in real professional contexts — not just academic ones.',
+    e_tag:'// 03 — Experience',e_title:'Career path',e_sub:'Concrete experience in demanding environments, in France and Africa.',
+    p_tag:'// 04 — Projects',p_title:'Data projects',p_sub:'Projects covering data science, machine learning and sector analysis.',
+    ap_tag:'// 05 — Live apps',ap_title:'Deployed apps',ap_sub:'Interactive applications designed and deployed for real business needs.',
+    r_tag:'// 06 — Recommendations',r_title:'What they say',r_sub:'People who have worked directly with me.',
+    c_tag:'// 07 — Contact',c_title:'Let\'s work together',c_desc:'Immediately available for a <strong>permanent Data Analyst role</strong>. Also open to fixed-term and freelance. France-wide, remote OK.',c_loc:'📍 Strasbourg · France-wide · Remote',
+    f_l:'© 2025 Samad KODON — Data Analyst',f_r:'Strasbourg · France · Remote OK',
+    voir:'View →',ouvrir:'Open app →'
+  }
+};
+
+document.addEventListener('DOMContentLoaded',()=>{
+
+  /* ── PRELOADER ── */
+  const pl=document.getElementById('pl');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>{pl.classList.add('gone');document.body.style.overflow=''},1800);
+
+  /* ── THÈME ── */
+  const html=document.documentElement;
+  const saved=localStorage.getItem('sk-theme')||'dark';
+  html.setAttribute('data-theme',saved);
+  document.getElementById('ttog').addEventListener('click',()=>{
+    const nxt=html.getAttribute('data-theme')==='dark'?'light':'dark';
+    html.setAttribute('data-theme',nxt);
+    localStorage.setItem('sk-theme',nxt);
+  });
+
+  /* ── LANGUE ── */
+  let lang=localStorage.getItem('sk-lang')||'fr';
+  applyLang(lang);
+  document.querySelectorAll('.l-btn').forEach(b=>{
+    b.addEventListener('click',()=>{
+      lang=b.dataset.lang;
+      localStorage.setItem('sk-lang',lang);
+      applyLang(lang);
+    });
+  });
+  function applyLang(l){
+    const t=T[l];
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k=el.dataset.i18n;
+      if(t[k]!==undefined) el.innerHTML=t[k];
+    });
+    document.querySelectorAll('.l-btn').forEach(b=>b.classList.toggle('act',b.dataset.lang===l));
+    document.documentElement.lang=l;
+  }
+
+  /* ── CURSEUR ── */
+  const cr=document.getElementById('cr'),cd=document.getElementById('cd');
+  if(cr&&cd){
+    let rx=0,ry=0,mx=0,my=0;
+    document.addEventListener('mousemove',e=>{
+      mx=e.clientX;my=e.clientY;
+      cd.style.left=mx+'px';cd.style.top=my+'px';
+    });
+    (function loop(){
+      rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+      cr.style.left=rx+'px';cr.style.top=ry+'px';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a,button,.proj-c,.app-c,.a-card,.reco-c,.badge').forEach(el=>{
+      el.addEventListener('mouseenter',()=>cr.classList.add('h'));
+      el.addEventListener('mouseleave',()=>cr.classList.remove('h'));
+    });
+  }
+
+  /* ── SCROLL PROGRESS ── */
+  const sp=document.getElementById('sp');
+  window.addEventListener('scroll',()=>{
+    const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
+    sp.style.width=pct+'%';
+  },{passive:true});
+
+  /* ── NAV ── */
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('s',window.scrollY>50),{passive:true});
+
+  /* ── NAV ACTIVE ── */
+  const secs=document.querySelectorAll('section[id]');
+  const nls=document.querySelectorAll('.nav-links a');
+  new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) nls.forEach(l=>l.classList.toggle('act',l.getAttribute('href')==='#'+e.target.id));
+    });
+  },{threshold:.4}).observe;
+  secs.forEach(s=>new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)nls.forEach(l=>l.classList.toggle('act',l.getAttribute('href')==='#'+e.target.id))});
+  },{threshold:.4}).observe(s));
+
+  /* ── SMOOTH SCROLL ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t)t.scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  /* ── REVEAL ── */
+  const obsR=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obsR.unobserve(e.target)}});
+  },{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obsR.observe(el));
+
+  /* ── EXP ITEMS ── */
+  document.querySelectorAll('.exp-item').forEach((el,i)=>{
+    new IntersectionObserver(entries=>{
+      if(entries[0].isIntersecting){setTimeout(()=>el.classList.add('vis'),i*120)}
+    },{threshold:.15}).observe(el);
+  });
+
+  /* ── SKILL BARS ── */
+  const skSec=document.querySelector('#skills');
+  if(skSec){
+    new IntersectionObserver(entries=>{
+      if(entries[0].isIntersecting){
+        document.querySelectorAll('.sk-fill').forEach(b=>b.style.width=b.dataset.w);
+      }
+    },{threshold:.2}).observe(skSec);
+  }
+
+  /* ── PROJECT CARDS STAGGER ── */
+  const cards=document.querySelectorAll('.proj-c');
+  if(cards.length){
+    new IntersectionObserver(entries=>{
+      if(entries[0].isIntersecting){
+        cards.forEach((c,i)=>setTimeout(()=>c.classList.add('vis'),i*90));
+      }
+    },{threshold:.05}).observe(cards[0]);
+  }
+
+  /* ── STAT COUNTERS ── */
+  document.querySelectorAll('.st-n[data-target]').forEach(el=>{
+    new IntersectionObserver(entries=>{
+      if(entries[0].isIntersecting){
+        const target=parseFloat(el.dataset.target),suffix=el.dataset.suffix||'',dur=1600,start=performance.now();
+        (function tick(now){
+          const p=Math.min((now-start)/dur,1),ease=1-Math.pow(1-p,3);
+          el.textContent=Math.floor(ease*target)+suffix;
+          if(p<1)requestAnimationFrame(tick);
+        })(start);
+      }
+    },{threshold:.5}).observe(el);
+  });
+
+  /* ── PARALLAX ORBS ── */
+  const orbs=document.querySelectorAll('.orb');
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY;
+    orbs.forEach((o,i)=>o.style.transform=`translateY(${y*(i+1)*.06}px)`);
+  },{passive:true});
+
+  document.querySelector('#home')?.addEventListener('mousemove',e=>{
+    const x=(e.clientX/window.innerWidth-.5)*2,y=(e.clientY/window.innerHeight-.5)*2;
+    orbs.forEach((o,i)=>o.style.transform=`translate(${x*(i+1)*9}px,${y*(i+1)*9}px)`);
+  });
+
+});
+</script>
+</body>
+</html>
