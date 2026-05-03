@@ -645,12 +645,28 @@ section { padding: 120px 64px; position: relative; }
 
 .exp-tools { display: flex; flex-wrap: wrap; gap: 8px; }
 .tool {
-  font-family: var(--mono); font-size: 10px;
-  padding: 4px 12px; border-radius: 4px;
-  background: var(--card); border: 1px solid var(--border);
-  color: var(--text2); transition: all var(--dur);
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  padding: 5px 13px; border-radius: 4px;
+  letter-spacing: 1px;
+  transition: all var(--dur) var(--ease);
+  cursor: default;
 }
-.tool:hover { border-color: var(--accent); color: var(--accent); background: var(--glow); }
+.tool:hover { transform: translateY(-2px); filter: brightness(1.15); }
+
+/* Python — bleu */
+.tool-py  { background: rgba(79,142,247,.12); border: 1px solid rgba(79,142,247,.3);  color: #7eb3ff; }
+/* SQL — violet */
+.tool-sql { background: rgba(168,85,247,.12); border: 1px solid rgba(168,85,247,.3);  color: #c084fc; }
+/* Excel / Sheets — vert */
+.tool-xls { background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.3);  color: #6ee7b7; }
+/* BI / Dataiku / Streamlit — cyan */
+.tool-bi  { background: rgba(34,211,238,.12); border: 1px solid rgba(34,211,238,.3);  color: #67e8f9; }
+/* Outils terrain / CRM — ambre */
+.tool-ops { background: rgba(251,191,36,.10); border: 1px solid rgba(251,191,36,.3);  color: #fcd34d; }
+/* SI / migration — rouge doux */
+.tool-si  { background: rgba(248,113,113,.10); border: 1px solid rgba(248,113,113,.3); color: #fca5a5; }
+/* Default */
+.tool-def { background: var(--card); border: 1px solid var(--border); color: var(--text2); }
 
 /* =============================================
    PROJECTS
@@ -1062,7 +1078,11 @@ footer p {
         <li data-t="e1_b4">Accompagnement de l'équipe data sur des projets transverses de maintenance</li>
       </ul>
       <div class="exp-tools">
-        <span class="tool">Python</span><span class="tool">SQL</span><span class="tool">Excel</span><span class="tool">Harmonie</span><span class="tool">Imago</span>
+        <span class="tool tool-py">Python</span>
+        <span class="tool tool-sql">SQL</span>
+        <span class="tool tool-xls">Excel</span>
+        <span class="tool tool-si">Harmonie</span>
+        <span class="tool tool-si">Imago</span>
       </div>
     </div>
 
@@ -1080,7 +1100,11 @@ footer p {
         <li data-t="e2_b5">Création de dashboards Power BI pour le pilotage des KPIs abonnements</li>
       </ul>
       <div class="exp-tools">
-        <span class="tool">Python</span><span class="tool">SQL (Snowflake)</span><span class="tool">Power BI</span><span class="tool">Dataiku</span><span class="tool">Excel</span>
+        <span class="tool tool-py">Python</span>
+        <span class="tool tool-sql">SQL (Snowflake)</span>
+        <span class="tool tool-bi">Power BI</span>
+        <span class="tool tool-bi">Dataiku</span>
+        <span class="tool tool-xls">Excel</span>
       </div>
     </div>
 
@@ -1098,7 +1122,11 @@ footer p {
         <li data-t="e3_b5">Automatisation des tableaux de bord Google Sheets connecté à GeckoBoard</li>
       </ul>
       <div class="exp-tools">
-        <span class="tool">Excel</span><span class="tool">Google Sheets</span><span class="tool">Pipedrive</span><span class="tool">GeckoBoard</span><span class="tool">SQL</span>
+        <span class="tool tool-xls">Excel</span>
+        <span class="tool tool-xls">Google Sheets</span>
+        <span class="tool tool-ops">Pipedrive</span>
+        <span class="tool tool-ops">GeckoBoard</span>
+        <span class="tool tool-sql">SQL</span>
       </div>
     </div>
 
