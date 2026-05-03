@@ -193,18 +193,19 @@ nav.stuck {
 
 .nav-right { display: flex; align-items: center; gap: 14px; }
 
-/* Lang switch */
-.lang-sw {
-  display: flex; border: 1px solid var(--border);
-  border-radius: 4px; overflow: hidden;
-}
+/* Lang flags */
+.lang-sw { display: flex; gap: 6px; align-items: center; }
 .lang-btn {
-  font-family: var(--mono); font-size: 10px;
-  padding: 6px 12px; letter-spacing: 1.5px;
-  background: transparent; color: var(--text2);
-  border: none; cursor: none; transition: all var(--dur);
+  width: 32px; height: 22px;
+  border-radius: 3px; border: 2px solid transparent;
+  overflow: hidden; cursor: none;
+  transition: all var(--dur); opacity: .5;
+  padding: 0; background: none;
+  font-size: 20px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
 }
-.lang-btn.active { background: var(--accent); color: #fff; }
+.lang-btn.active { opacity: 1; border-color: var(--accent); box-shadow: 0 0 8px rgba(79,142,247,.4); }
+.lang-btn:hover { opacity: .85; transform: scale(1.1); }
 
 /* Theme toggle */
 .theme-sw {
@@ -214,21 +215,24 @@ nav.stuck {
 }
 .theme-sw:hover { background: var(--glow); }
 .theme-track {
-  width: 38px; height: 21px;
+  width: 44px; height: 24px;
   background: var(--card2); border: 1px solid var(--border);
   border-radius: 12px; position: relative;
   transition: background var(--dur);
 }
+[data-theme="light"] .theme-track { background: #dbeafe; border-color: rgba(37,99,235,.2); }
 .theme-track::after {
-  content: ''; position: absolute; top: 3px; left: 3px;
-  width: 13px; height: 13px; border-radius: 50%;
+  content: ''; position: absolute; top: 4px; left: 4px;
+  width: 14px; height: 14px; border-radius: 50%;
   background: var(--accent);
   transition: transform var(--dur), background var(--dur);
+  box-shadow: 0 0 6px rgba(79,142,247,.5);
 }
 [data-theme="light"] .theme-track::after {
-  transform: translateX(17px); background: var(--gold);
+  transform: translateX(20px); background: var(--gold);
+  box-shadow: 0 0 6px rgba(251,191,36,.5);
 }
-.theme-icon { font-size: 14px; line-height: 1; }
+.theme-icon { font-size: 15px; line-height: 1; }
 
 /* Nav CTA */
 .nav-btn {
@@ -902,8 +906,8 @@ footer p {
 
   <div class="nav-right">
     <div class="lang-sw">
-      <button class="lang-btn active" data-lang="fr">FR</button>
-      <button class="lang-btn"        data-lang="en">EN</button>
+      <button class="lang-btn active" data-lang="fr" title="Français">🇫🇷</button>
+      <button class="lang-btn" data-lang="en" title="English">🇬🇧</button>
     </div>
     <div class="theme-sw" id="theme-sw">
       <span class="theme-icon">🌙</span>
