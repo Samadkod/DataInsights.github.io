@@ -194,18 +194,18 @@ nav.stuck {
 .nav-right { display: flex; align-items: center; gap: 14px; }
 
 /* Lang flags */
-.lang-sw { display: flex; gap: 6px; align-items: center; }
+.lang-sw { display: flex; gap: 8px; align-items: center; }
 .lang-btn {
-  width: 32px; height: 22px;
-  border-radius: 3px; border: 2px solid transparent;
+  width: 36px; height: 26px;
+  border-radius: 4px; border: 2px solid transparent;
   overflow: hidden; cursor: none;
-  transition: all var(--dur); opacity: .5;
-  padding: 0; background: none;
-  font-size: 20px; line-height: 1;
+  transition: all var(--dur);
+  opacity: .45; padding: 0; background: none;
   display: flex; align-items: center; justify-content: center;
 }
-.lang-btn.active { opacity: 1; border-color: var(--accent); box-shadow: 0 0 8px rgba(79,142,247,.4); }
-.lang-btn:hover { opacity: .85; transform: scale(1.1); }
+.lang-btn img { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; display: block; }
+.lang-btn.active { opacity: 1; border-color: var(--accent); box-shadow: 0 0 10px rgba(79,142,247,.4); }
+.lang-btn:hover { opacity: .85; transform: scale(1.08); }
 
 /* Theme toggle */
 .theme-sw {
@@ -906,8 +906,12 @@ footer p {
 
   <div class="nav-right">
     <div class="lang-sw">
-      <button class="lang-btn active" data-lang="fr" title="Français">🇫🇷</button>
-      <button class="lang-btn" data-lang="en" title="English">🇬🇧</button>
+      <button class="lang-btn active" data-lang="fr" title="Français">
+        <img src="https://flagcdn.com/w40/fr.png" alt="FR" width="28" height="18">
+      </button>
+      <button class="lang-btn" data-lang="en" title="English">
+        <img src="https://flagcdn.com/w40/gb.png" alt="EN" width="28" height="18">
+      </button>
     </div>
     <div class="theme-sw" id="theme-sw">
       <span class="theme-icon">🌙</span>
